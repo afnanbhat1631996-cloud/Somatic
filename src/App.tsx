@@ -1,9 +1,9 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { GoogleGenAI } from '@google/genai';
 import Markdown from 'react-markdown';
 import { 
-  Frown, Annoyed, Meh, Smile, Laugh, Heart,
+  Frown, Annoyed, Meh, Smile, Laugh, Heart, WifiOff,
   HeartPulse, Wind, Brain, Activity, 
   ArrowRight, ArrowLeft, RefreshCw, CheckCircle2
 } from 'lucide-react';
@@ -34,6 +34,20 @@ export default function App() {
   const [symptoms, setSymptoms] = useState<string[]>([]);
   const [session, setSession] = useState<string | null>(null);
   const [loading, setLoading] = useState(false);
+  const [isOffline, setIsOffline] = useState(!navigator.onLine);
+
+  useEffect(() => {
+    const handleOnline = () => setIsOffline(false);
+    const handleOffline = () => setIsOffline(true);
+
+    window.addEventListener('online', handleOnline);
+    window.addEventListener('offline', handleOffline);
+
+    return () => {
+      window.removeEventListener('online', handleOnline);
+      window.removeEventListener('offline', handleOffline);
+    };
+  }, []);
 
   const handleNext = () => setStep((s) => Math.min(s + 1, 5));
   const handlePrev = () => setStep((s) => Math.max(s - 1, 1));
@@ -217,13 +231,24 @@ export default function App() {
                 })}
               </div>
 
-              <div className="flex justify-between">
+              <div className="flex justify-between items-center">
                 <button onClick={handlePrev} className="text-[#5A5A40] hover:text-black font-medium flex items-center gap-2 px-4 py-2">
                   <ArrowLeft size={18} /> Back
                 </button>
-                <button onClick={generateSession} className="olive-button flex items-center gap-2">
-                  Create Session <ArrowRight size={18} />
-                </button>
+                <div className="flex flex-col items-end gap-2">
+                  <button 
+                    onClick={generateSession} 
+                    disabled={isOffline}
+                    className="olive-button flex items-center gap-2"
+                  >
+                    Create Session <ArrowRight size={18} />
+                  </button>
+                  {isOffline && (
+                    <span className="text-xs text-rose-600 flex items-center gap-1 font-medium">
+                      <WifiOff size={12} /> You are offline
+                    </span>
+                  )}
+                </div>
               </div>
             </motion.div>
           )}

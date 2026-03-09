@@ -1,0 +1,21 @@
+{
+  "name": "Somatic Relief",
+  "short_name": "Somatic",
+  "description": "An app that guides you through a somatic session based on your mood and anxiety symptoms.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#f5f5f0",
+  "theme_color": "#f5f5f0",
+  "icons": [
+    {
+      "src": "https://picsum.photos/seed/somatic/192/192",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "https://picsum.photos/seed/somatic/512/512",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}
