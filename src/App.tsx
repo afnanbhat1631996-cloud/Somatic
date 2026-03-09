@@ -85,12 +85,39 @@ export default function App() {
         Keep it practical and easy to follow in the moment.
       `;
 
-      const response = await ai.models.generateContent({
-        model: 'gemini-3-flash-preview',
-        contents: prompt,
-      });
+      let response;
+      let retries = 0;
+      const maxRetries = 3;
 
-      setSession(response.text || "I'm sorry, I couldn't generate a session right now. Please try again.");
+      while (retries <= maxRetries) {
+        try {
+          response = await ai.models.generateContent({
+            model: 'gemini-3-flash-preview',
+            contents: prompt,
+          });
+          break; // Success, exit loop
+        } catch (error: any) {
+          const isRateLimit = error?.status === 429 || 
+                              error?.message?.includes('429') || 
+                              error?.message?.includes('Too Many Requests') ||
+                              error?.message?.includes('quota');
+          
+          if (isRateLimit && retries < maxRetries) {
+            retries++;
+            // Exponential backoff: 2s, 4s, 8s
+            const delay = Math.pow(2, retries) * 1000;
+            console.log(`Rate limit hit (429). Retrying in ${delay}ms...`);
+            await new Promise(resolve => setTimeout(resolve, delay));
+          } else {
+            if (isRateLimit) {
+              throw new Error("The AI service is currently receiving too many requests. Please wait a minute and try again.");
+            }
+            throw error;
+          }
+        }
+      }
+
+      setSession(response?.text || "I'm sorry, I couldn't generate a session right now. Please try again.");
       setStep(5); // Result step
     } catch (error) {
       console.error("Error generating session:", error);
