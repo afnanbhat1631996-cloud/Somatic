@@ -3,7 +3,7 @@ import { motion, AnimatePresence } from 'motion/react';
 import { GoogleGenAI } from '@google/genai';
 import Markdown from 'react-markdown';
 import { 
-  Frown, Annoyed, Meh, Smile, Laugh, 
+  Frown, Annoyed, Meh, Smile, Laugh, Heart,
   HeartPulse, Wind, Brain, Activity, 
   ArrowRight, ArrowLeft, RefreshCw, CheckCircle2
 } from 'lucide-react';
@@ -275,6 +275,16 @@ export default function App() {
             </motion.div>
           )}
         </AnimatePresence>
+        
+        <footer className="mt-12 text-center pb-8">
+          <div className="flex items-center justify-center gap-2 text-[#5A5A40]/40">
+            <div className="h-[1px] w-8 bg-[#5A5A40]/10"></div>
+            <p className="font-serif italic text-sm tracking-widest uppercase flex items-center gap-1.5">
+              Created with <Heart size={12} className="fill-[#5A5A40]/20 stroke-[#5A5A40]/40" /> by Afnan
+            </p>
+            <div className="h-[1px] w-8 bg-[#5A5A40]/10"></div>
+          </div>
+        </footer>
       </div>
     </div>
   );
