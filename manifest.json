@@ -1,0 +1,11 @@
+{
+  "background_color": "#ffffff",
+  "dir": "ltr",
+  "display": "standalone",
+  "name": "somatic-seven.vercel",
+  "orientation": "any",
+  "scope": "/",
+  "short_name": "somatic-seven.vercel",
+  "start_url": "/",
+  "theme_color": "#ffffff"
+}
