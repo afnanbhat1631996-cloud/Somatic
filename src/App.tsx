@@ -92,7 +92,7 @@ export default function App() {
       while (retries <= maxRetries) {
         try {
           response = await ai.models.generateContent({
-            model: 'gemini-3-flash-preview',
+            model: 'gemini-2.5-flash-latest',
             contents: prompt,
           });
           break; // Success, exit loop
