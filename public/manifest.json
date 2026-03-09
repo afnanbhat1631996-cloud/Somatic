@@ -1,4 +1,5 @@
 {
+  "id": "/?source=pwa",
   "name": "Somatic Relief",
   "short_name": "Somatic",
   "description": "An app that guides you through a somatic session based on your mood and anxiety symptoms.",
@@ -6,16 +7,52 @@
   "display": "standalone",
   "background_color": "#f5f5f0",
   "theme_color": "#f5f5f0",
+  "dir": "ltr",
+  "lang": "en-US",
+  "orientation": "portrait",
+  "scope": "/",
+  "categories": ["health", "lifestyle", "medical"],
   "icons": [
     {
       "src": "https://picsum.photos/seed/somatic/192/192",
       "sizes": "192x192",
-      "type": "image/png"
+      "type": "image/png",
+      "purpose": "any"
     },
     {
       "src": "https://picsum.photos/seed/somatic/512/512",
       "sizes": "512x512",
-      "type": "image/png"
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ],
+  "screenshots": [
+    {
+      "src": "https://picsum.photos/seed/somatic-screen1/1080/1920",
+      "sizes": "1080x1920",
+      "type": "image/jpeg",
+      "form_factor": "narrow"
+    },
+    {
+      "src": "https://picsum.photos/seed/somatic-screen2/1920/1080",
+      "sizes": "1920x1080",
+      "type": "image/jpeg",
+      "form_factor": "wide"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "Start Session",
+      "short_name": "Start",
+      "description": "Start a new somatic session",
+      "url": "/",
+      "icons": [
+        {
+          "src": "https://picsum.photos/seed/somatic/192/192",
+          "sizes": "192x192",
+          "type": "image/png"
+        }
+      ]
     }
   ]
 }
