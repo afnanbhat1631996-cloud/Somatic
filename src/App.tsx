@@ -8,8 +8,6 @@ import {
   ArrowRight, ArrowLeft, RefreshCw, CheckCircle2
 } from 'lucide-react';
 
-const ai = new GoogleGenAI({ apiKey: process.env.GEMINI_API_KEY });
-
 const moods = [
   { id: 'terrible', label: 'Terrible', icon: Frown, color: 'text-rose-600', bg: 'bg-rose-50', border: 'border-rose-200' },
   { id: 'bad', label: 'Bad', icon: Annoyed, color: 'text-orange-600', bg: 'bg-orange-50', border: 'border-orange-200' },
@@ -50,6 +48,11 @@ export default function App() {
     setLoading(true);
     setStep(4); // Loading step
     try {
+      const apiKey = process.env.GEMINI_API_KEY;
+      if (!apiKey) {
+        throw new Error("API key is missing. Please configure your Gemini API key.");
+      }
+      const ai = new GoogleGenAI({ apiKey });
       const prompt = `
         You are a compassionate, expert somatic therapist. 
         A user has come to you for a guided somatic session.
@@ -77,7 +80,8 @@ export default function App() {
       setStep(5); // Result step
     } catch (error) {
       console.error("Error generating session:", error);
-      setSession("An error occurred while generating your session. Please try again.");
+      const errorMessage = error instanceof Error ? error.message : "An error occurred while generating your session. Please try again.";
+      setSession(`**Error:** ${errorMessage}`);
       setStep(5);
     } finally {
       setLoading(false);
