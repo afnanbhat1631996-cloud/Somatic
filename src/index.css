@@ -1,0 +1,95 @@
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=Inter:wght@300;400;500;600&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --font-serif: "Cormorant Garamond", serif;
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+}
+
+body {
+  font-family: "Inter", sans-serif;
+  background-color: #f5f5f0;
+  color: #2c2c24;
+  overscroll-behavior-y: none;
+  -webkit-tap-highlight-color: transparent;
+  padding-top: env(safe-area-inset-top);
+  padding-bottom: env(safe-area-inset-bottom);
+  padding-left: env(safe-area-inset-left);
+  padding-right: env(safe-area-inset-right);
+}
+
+.card, .olive-button, button {
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+.font-serif {
+  font-family: "Cormorant Garamond", serif;
+}
+
+.olive-button {
+  background-color: #5A5A40;
+  color: white;
+  border-radius: 9999px;
+  padding: 12px 24px;
+  letter-spacing: 0.5px;
+  transition: background-color 0.2s ease;
+}
+
+.olive-button:hover {
+  background-color: #4a4a34;
+}
+
+.olive-button:disabled {
+  background-color: #a0a096;
+  cursor: not-allowed;
+}
+
+.card {
+  background-color: #FFFFFF;
+  border-radius: 32px;
+  box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.05);
+}
+
+.markdown-body h1 {
+  font-family: "Cormorant Garamond", serif;
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+  color: #3a3a2a;
+}
+
+.markdown-body h2 {
+  font-family: "Cormorant Garamond", serif;
+  font-size: 2rem;
+  margin-top: 2rem;
+  margin-bottom: 1rem;
+  color: #4a4a34;
+}
+
+.markdown-body h3 {
+  font-family: "Cormorant Garamond", serif;
+  font-size: 1.5rem;
+  margin-top: 1.5rem;
+  margin-bottom: 0.75rem;
+  color: #5A5A40;
+}
+
+.markdown-body p {
+  margin-bottom: 1rem;
+  line-height: 1.7;
+}
+
+.markdown-body ul {
+  list-style-type: disc;
+  padding-left: 1.5rem;
+  margin-bottom: 1rem;
+}
+
+.markdown-body li {
+  margin-bottom: 0.5rem;
+}
+
+.markdown-body strong {
+  font-weight: 600;
+  color: #2c2c24;
+}
